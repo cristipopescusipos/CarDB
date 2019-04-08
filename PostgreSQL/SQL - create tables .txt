@@ -1,0 +1,19 @@
+
+CREATE TABLE owner (
+    id_owner uuid  NOT NULL PRIMARY KEY,
+    name varchar(50) NOT NULL UNIQUE,
+    telephone varchar(50) UNIQUE,
+    email varchar(50) UNIQUE
+);
+
+CREATE TABLE car (
+    id_car uuid  NOT NULL PRIMARY KEY,
+	id_owner uuid NOT NULL, 
+	plates varchar(50) NOT NULL UNIQUE,
+    rca date,
+    itp date,
+    rovinieta date,
+    fire_ext date,
+    first_aid date,
+    FOREIGN KEY (id_owner) REFERENCES owner (id_owner)
+);
