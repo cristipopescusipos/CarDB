@@ -1,7 +1,6 @@
 package siit.ro.servlet;
 
 import siit.ro.model.DatabaseManager;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +9,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
+
+/**
+ *  The owner servlet part of the Control layer of the MVC ,
+ *  populates the tables from the owner part of the application
+ *  and helps to add update and delete dates in the owner section
+ *
+ */
 
 @WebServlet(urlPatterns = {"/owner"})
 public class Owner extends HttpServlet {
@@ -33,17 +39,12 @@ public class Owner extends HttpServlet {
             case("delete"):
                 ownerId = req.getParameter("idOwner");
                 dbManager.deleteOwner(ownerId);
-//                 break;
             default:
                 List<siit.ro.entity.Owner> owners = dbManager.getAllOwners();
                 req.setAttribute("owners", owners);
                 req.getRequestDispatcher("/jsps/owner/list.jsp").forward(req, resp);
         }
-
-
     }
-
-
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -83,6 +84,5 @@ public class Owner extends HttpServlet {
                 req.getRequestDispatcher("/jsps/owner/list.jsp").forward(req, resp);
         }
     }
-
 
 }

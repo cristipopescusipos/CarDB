@@ -55,11 +55,11 @@
             <tr>
                 <td> <c:out value="${alert.name}"/> </td>
                 <td> <c:out value="${alert.plates}"/> </td>
-                <td> <c:out value="${alert.rca}"/> </td>
-                <td> <c:out value="${alert.itp}"/> </td>
-                <td> <c:out value="${alert.rovinieta}"/> </td>
-                <td> <c:out value="${alert.fireExt}"/> </td>
-                <td> <c:out value="${alert.firstAid}"/> </td>
+                <td> Rca : <br><c:out value="${alert.rca}"/> </td>
+                <td> Itp : <br><c:out value="${alert.itp}"/> </td>
+                <td> Rovinieta : <br><c:out value="${alert.rovinieta}"/> </td>
+                <td> FireExt : <br><c:out value="${alert.fireExt}"/> </td>
+                <td> FirstAid : <br><c:out value="${alert.firstAid}"/> </td>
                 <td><a class="btn btn-success" href="?type=edit&idCar=<c:out value="${alert.idCar}"/>" role="button">Edit</a></td>
             </tr>
         </c:forEach>

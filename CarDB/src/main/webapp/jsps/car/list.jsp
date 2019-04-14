@@ -57,11 +57,11 @@
 
                 <td> <c:out value="${car.name}"/> </td>
                 <td> <c:out value="${car.plates}"/> </td>
-                <td> <c:out value="${car.rca}"/> </td>
-                <td> <c:out value="${car.itp}"/> </td>
-                <td> <c:out value="${car.rovinieta}"/> </td>
-                <td> <c:out value="${car.fireExt}"/> </td>
-                <td> <c:out value="${car.firstAid}"/> </td>
+                <td> Rca : <br><c:out value="${car.rca}"/> </td>
+                <td> Itp : <br><c:out value="${car.itp}"/> </td>
+                <td> Rovinieta : <br><c:out value="${car.rovinieta}"/> </td>
+                <td> FireExt :  <br><c:out value="${car.fireExt}"/> </td>
+                <td> FirstAid : <br><c:out value="${car.firstAid}"/> </td>
                 <td><a class="btn btn-success" href="?action=edit&idCar=<c:out value="${car.idCar}"/>" role="button">Edit</a>
                 <a Onclick="return ConfirmDelete();" class="btn btn-danger" href="?action=delete&idCar=<c:out value="${car.idCar}"/>" role="button">Delete</a></td>
 

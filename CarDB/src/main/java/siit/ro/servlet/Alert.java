@@ -11,6 +11,14 @@ import java.sql.Date;
 import java.util.List;
 import java.util.UUID;
 
+
+/**
+ *  The alert servlet  part of the Control layer of the MVC ,
+ *  populates the tables from the alerts part of the application
+ *  and helps to update dates in the alerts section
+ *
+ */
+
 @WebServlet(urlPatterns = {"/alert"})
 public class Alert extends HttpServlet {
     private DatabaseManager dbManager = DatabaseManager.getInstance();
@@ -79,6 +87,7 @@ public class Alert extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Alert.populateAlerts(req, dbManager);
         siit.ro.entity.Alert alert  = new siit.ro.entity.Alert();
         alert.setIdCar(UUID.fromString(req.getParameter("idCar")));
         alert.setPlates(req.getParameter("plates"));

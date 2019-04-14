@@ -2,6 +2,10 @@ package siit.ro.entity;
 
 import java.util.UUID;
 
+/**
+ *  The Car class part of the Model layer of the MVC
+ */
+
 public class Owner {
     private UUID idOwner;
     private String name;

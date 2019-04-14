@@ -3,6 +3,11 @@ package siit.ro.entity;
 import java.sql.Date;
 import java.util.UUID;
 
+/**
+ *  The Alert class , similar with the Car class, created to have a less confusing code in the DatabaseManager
+ */
+
+
 public class Alert {
 
     private UUID idCar;

@@ -3,6 +3,10 @@ package siit.ro.entity;
 import java.sql.Date;
 import java.util.UUID;
 
+/**
+ *  The Car class part of the Model layer of the MVC
+ */
+
 public class Car {
     private UUID idCar;
     private UUID idOwner;

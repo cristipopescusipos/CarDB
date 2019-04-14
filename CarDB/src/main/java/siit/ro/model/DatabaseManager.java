@@ -9,6 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ *  The DatabaseManager part of the Model layer of the MVC ,
+ *  helps to connect to the dataBase - PostgreSQL,
+ *  and helps with the request and response date from the Control layer
+ */
+
+
 public class DatabaseManager {
     private Connection connection;
 
@@ -57,7 +64,14 @@ public class DatabaseManager {
     }
 
     /**
-     * CAR OWNER
+     * Owner Methods
+     *
+     *  getAllOwners - return all owners
+     *  addOwner - add a owner to the SQL table
+     *  deleteOwner - delete a owner from th SQL table
+     *  updateOwner - update a owner from the SQL table
+     *  getOwnerById - return data for o owner in relation to a specified Id
+     *
      */
 
     public List<Owner> getAllOwners() {
@@ -78,7 +92,6 @@ public class DatabaseManager {
         }
 
         return allOwners;
-
     }
 
     public void addOwner(Owner owner) {
@@ -117,7 +130,6 @@ public class DatabaseManager {
         }
     }
 
-
     public Owner getOwnerById(String id_owner) {
         Owner owner = new Owner();
         try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM owner WHERE id_owner = ?")) {
@@ -136,7 +148,14 @@ public class DatabaseManager {
     }
 
     /**
-     * CAR SECTION
+     * Car Methods
+     *
+     *  getAllCars - return all cars
+     *  addCar - add a car to the SQL table (it needs the owner Id)
+     *  deleteCar - delete a car from th SQL table
+     *  updateCar - update a car from the SQL table
+     *  getCarById - return data for o car in relation to a specified Id
+     *
      */
 
 
@@ -165,8 +184,6 @@ public class DatabaseManager {
 
         return allCars;
     }
-
-
 
     public void addCars(Car car) {
         try {
@@ -233,7 +250,22 @@ public class DatabaseManager {
     }
 
     /**
-     * ALERTS
+     * Alerts Methods
+     *
+     *  getAllAlerts - return all alerts
+     *  getAllRca - return all Rca dates that are expired or have 30 days until expiration day
+     *  getAllItp - return all Itp dates that are expired or have 30 days until expiration day
+     *  getAllRovinieta - return all Rovinieta dates that are expired or have 30 days until expiration day
+     *  getAllFireExt - return all Fire Extinguisher dates that are expired or have 30 days until expiration day
+     *  getAllFirstAid - return all First Aid Kit's dates that are expired or have 30 days until expiration day
+     *  updateAlert - updates the dates from a car in the alerts section
+     *  countRcaAlerts - returns the number of the Rca Alerts
+     *  countItpAlerts - returns the number of the Itp Alerts
+     *  countRovinietaAlerts - returns the number of the Rovinieta Alerts
+     *  countFirstExtAlerts - returns the number of the Fire Extinguisher Alerts
+     *  countFirstAidAlerts - returns the number of the First Aid Kit's Alerts
+     *
+     *
      */
 
     public List<Alert> getAllAlerts() {
@@ -316,25 +348,6 @@ public class DatabaseManager {
 
         return allItp;
     }
-
-    public int countItpAlerts(){
-
-        return getAllItp().size();
-    }
-    public int countRcaAlerts(){
-        return getAllRca().size();
-    }
-    public int countRovinietaAlerts(){
-        return getAllRovinieta().size();
-    }
-    public int countFireExt(){
-        return getAllFireExt().size();
-    }
-    public int countFirstAid(){
-        return getAllFirstAid().size();
-    }
-
-
 
     public List<Alert> getAllRovinieta() {
         List<Alert> allRovinieta = new ArrayList<>();
@@ -428,30 +441,20 @@ public class DatabaseManager {
         }
     }
 
-    public Alert getAletByIdCar(String carId) {
-        Alert alert = new Alert();
-        try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM car WHERE id_car = ?")) {
-            statement.setObject(1, UUID.fromString(carId));
-            ResultSet alertResult = statement.executeQuery();
-            alertResult.next();
-            alert.setIdCar(UUID.fromString(alertResult.getString(1)));
-            alert.setIdOwner(UUID.fromString(alertResult.getString(2)));
-            alert.setPlates(alertResult.getString(3));
-            alert.setRca(Date.valueOf(alertResult.getString(4)));
-            alert.setItp(Date.valueOf(alertResult.getString(5)));
-            alert.setRovinieta(Date.valueOf(alertResult.getString(6)));
-            alert.setFireExt(Date.valueOf(alertResult.getString(7)));
-            alert.setFirstAid(Date.valueOf(alertResult.getString(8)));
-        } catch (SQLException sqlEx) {
-            System.out.println(sqlEx);
-        }
-
-        return alert;
+    public int countItpAlerts(){
+        return getAllItp().size();
     }
-
-
-
-
-
+    public int countRcaAlerts(){
+        return getAllRca().size();
+    }
+    public int countRovinietaAlerts(){
+        return getAllRovinieta().size();
+    }
+    public int countFireExt(){
+        return getAllFireExt().size();
+    }
+    public int countFirstAid(){
+        return getAllFirstAid().size();
+    }
 
 }
